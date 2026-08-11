@@ -18,7 +18,7 @@ class Enemy{
     int getatkPower(){
         return atkpower;
     }
-    int getname(){
+    string getname(){
         return name;
     }
     bool isalive(){
@@ -35,6 +35,45 @@ class Enemy{
         cout<<"Attack Power:"<<atkpower<<endl;
     }
 };
+class Goblin: public Enemy{
+    public:
+        Goblin(): Enemy("Goblin", 30, 5){}
+};
+class Character {
+protected:                      // PROTECTED, not private:
+    string name;                 // subclasses (Warrior/Mage/Assassin) need
+    int health;                  // direct access to these in their own
+    int attackPower;             // attack() implementations. Outside code
+                                  // still cannot touch them directly.
+public:
+    Character(string n, int hp, int atk) {
+        name = n;
+        health = hp;
+        attackPower = atk;
+    }
+ 
+    int getHealth() {
+        return health;
+    }
+ 
+    string getName() {
+        return name;
+    }
+ 
+    bool isAlive() {
+        return health > 0;
+    }
+ 
+    void takeDamage(int dmg) {
+        health -= dmg;
+        if (health < 0) {
+            health = 0;
+        }
+    }
+ 
+    void displayStats() {
+        cout << name << " | HP: " << health
+             << " | ATK: " << attackPower << endl;
 
 class Character{
     private:
